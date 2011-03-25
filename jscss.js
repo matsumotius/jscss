@@ -60,51 +60,26 @@
             if(!element || !hash) return;
             for(key in hash) {
                 for(ev_name in hash[key].event){
-                    if(event_type_of(hash[key].event[ev_name]).is_multi){
-                        if(key_type_of(key).is_id){
-                            element.find(key)[ev_name](function(e){
-                                if($(this).attr('id')){
-                                    execute(e, element, hash, Util.EXP.ID($(this).attr('id')));
-                                }
-                            });
-                        }
-                        if(key_type_of(key).is_cls){
-                            element.find(key)[ev_name](function(e){
-                                if($(this).attr('class')){
-                                    execute(e, element, hash, Util.EXP.CLS($(this).attr('class')));
-                                }
-                            });
-                        }
-                        if(key_type_of(key).is_tag){
-                            element.find(key)[ev_name](function(e){
-                                if($(this)[0].nodeName){
-                                    execute(e, element, hash, Util.EXP.TAG($(this)[0].nodeName.toLowerCase()));
-                                }
-                            });
-                        }
-                    }else{
-                        if(key_type_of(key).is_id){
-                            element.find(key)[ev_name](function(e){
-                                if($(this).attr('id')){
-                                    execute(e, element, hash, Util.EXP.ID($(this).attr('id')));
-                                }
-                            });
-                        }
-                        if(key_type_of(key).is_cls){
-                            element.find(key)[ev_name](function(e){
-                                if($(this).attr('class')){
-                                    execute(e, element, hash, Util.EXP.CLS($(this).attr('class')));
-                                }
-                            });
-                        }
-                        if(key_type_of(key).is_tag){
-                            element.find(key)[ev_name](function(e){
-                                if($(this)[0].nodeName){
-                                    execute(e, element, hash, Util.EXP.TAG($(this)[0].nodeName.toLowerCase()));
-                                }
-                            });
-                        }
-                        
+                    if(key_type_of(key).is_id){
+                        element.find(key)[ev_name](function(e){
+                            if($(this).attr('id')){
+                                execute(e, element, hash, Util.EXP.ID($(this).attr('id')));
+                            }
+                        });
+                    }
+                    if(key_type_of(key).is_cls){
+                        element.find(key)[ev_name](function(e){
+                            if($(this).attr('class')){
+                                execute(e, element, hash, Util.EXP.CLS($(this).attr('class')));
+                            }
+                        });
+                    }
+                    if(key_type_of(key).is_tag){
+                        element.find(key)[ev_name](function(e){
+                            if($(this)[0].nodeName){
+                                execute(e, element, hash, Util.EXP.TAG($(this)[0].nodeName.toLowerCase()));
+                            }
+                        });
                     }
                 }
             }
