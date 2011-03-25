@@ -1,0 +1,68 @@
+<!-- test code -->
+<html>
+    <head>
+        <script type='text/javascript' src='jquery1.4.4.js'></script>
+        <script type='text/javascript' src='jscss.js'></script>
+        <script type='text/javascript'>
+            <!--
+                // test execute
+                $(document).ready(function(){
+                    var test_options = {
+                        '#jscss' : {
+                            event : {
+                                click : {
+                                    '#jscss' : {
+                                        color : 'red'
+                                    },
+                                    '.jscss' : {
+                                        color : 'red'
+                                    },
+                                    js : function(e){ console.log('clickkkkkk'); }
+                                },
+                                dblclick : {
+                                    '#jscss' : {
+                                        color : 'blue'
+                                    },
+                                    '.jscss' : {
+                                        color : 'blue'
+                                    },
+                                    js : null
+                                }
+                            }
+                        },
+                        '.jscss-class' : {
+                            event : {
+                                click : {
+                                    '#jscss' : {
+                                        'font-size' : '30px'
+                                    },
+                                    '.jscss' : {
+                                        'font-size' : '40px'
+                                    },
+                                    js : null
+                                }
+                            }
+                        },
+                        'h1' : {
+                            event : {
+                                click : {
+                                    'h1' : {
+                                        'color' : 'gray'
+                                    },
+                                    js : null
+                                }
+                            }
+                        }
+                    };
+                    $('html').jscss(test_options);
+                });
+            -->
+        </script>
+    </head>
+    <body>
+        <h1>- jscss test page</h1>
+        <div id='jscss' class='jscss-class'>ID - jscss</div>
+        <br />
+        <div class='jscss'>Class - jscss</div>
+    </body>
+</html>
