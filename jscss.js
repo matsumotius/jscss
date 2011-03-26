@@ -42,12 +42,16 @@
             }
         };
         
-        var execute = function(e, element, hash, key){
+        var execute = function(element, e, target, hash, key){
             if(hash[key] && hash[key].event[e.type]){
                 for(el_name in hash[key].event[e.type]){
                     if(el_name != 'js' && hash[key].event[e.type][el_name]){
                         for(css_key in hash[key].event[e.type][el_name]){
-                            $(element).find(el_name).css(css_key, hash[key].event[e.type][el_name][css_key]);
+                            if(el_name != 'this'){
+                                $(element).find(el_name).css(css_key, hash[key].event[e.type][el_name][css_key]);
+                            }else{
+                                $(target).css(css_key, hash[key].event[e.type][el_name][css_key]);
+                            }
                         }
                     }else if(el_name == 'js' && hash[key].event[e.type].js){
                         hash[key].event[e.type].js(e);
@@ -63,21 +67,21 @@
                     if(key_type_of(key).is_id){
                         element.find(key)[ev_name](function(e){
                             if($(this).attr('id')){
-                                execute(e, element, hash, Util.EXP.ID($(this).attr('id')));
+                                execute(element, e, this, hash, Util.EXP.ID($(this).attr('id')));
                             }
                         });
                     }
                     if(key_type_of(key).is_cls){
                         element.find(key)[ev_name](function(e){
                             if($(this).attr('class')){
-                                execute(e, element, hash, Util.EXP.CLS($(this).attr('class')));
+                                execute(element, e, this, hash, Util.EXP.CLS($(this).attr('class')));
                             }
                         });
                     }
                     if(key_type_of(key).is_tag){
                         element.find(key)[ev_name](function(e){
                             if($(this)[0].nodeName){
-                                execute(e, element, hash, Util.EXP.TAG($(this)[0].nodeName.toLowerCase()));
+                                execute(element, e, this, hash, Util.EXP.TAG($(this)[0].nodeName.toLowerCase()));
                             }
                         });
                     }
